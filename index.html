@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>美容室予約フォーム</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h2>美容室予約フォーム</h2>
+
+  <label>お名前（LINEの表示名）</label>
+  <input type="text" id="name" readonly />
+
+  <label>予約日</label>
+  <input type="date" id="date" />
+
+  <label>時間</label>
+  <select id="time">
+    <option value="">選択してください</option>
+    <option value="10:00">10:00〜</option>
+    <option value="11:00">11:00〜</option>
+    <option value="12:00">12:00〜</option>
+    <option value="13:00">13:00〜</option>
+    <option value="14:00">14:00〜</option>
+    <option value="15:00">15:00〜</option>
+    <option value="16:00">16:00〜</option>
+    <option value="17:00">17:00〜</option>
+  </select>
+
+  <button onclick="submitForm()">予約する</button>
+
+  <script>
+    // LIFF初期化してLINEの名前を表示（まだLIFF IDは仮）
+    async function initializeLiff() {
+      await liff.init({ liffId: "YOUR_LIFF_ID" }); // ← あとで差し替える
+      if (liff.isLoggedIn()) {
+        const profile = await liff.getProfile();
+        document.getElementById("name").value = profile.displayName;
+      } else {
+        liff.login();
+      }
+    }
+
+    function submitForm() {
+      alert("（仮）予約送信しました！");
+    }
+
+    initializeLiff();
+  </script>
+</body>
+</html>
